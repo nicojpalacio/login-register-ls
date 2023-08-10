@@ -1,4 +1,4 @@
-// App.js
+
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import Header from './components/Header';
@@ -14,17 +14,19 @@ const App = () => {
     localStorage.getItem('isLoggedIn') === 'true'
   );
 
-  const userData = JSON.parse(localStorage.getItem('userData'));
+  const storedUserData = localStorage.getItem('userData');
+  const userData = JSON.parse(storedUserData);
+  console.log(storedUserData)
   const isProfessional = userData && userData.userType === 'profesional';
-
   return (
     <Router>
+      
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
         <Route path="/register" element={<Register />} />
-        {isLoggedIn && <Route path="/dashboard" element={<Dashboard />} />}
+        {isLoggedIn && <Route path="/dashboard" element={<Dashboard props={storedUserData} />} />}
         {isProfessional && <Route path="/professionals" element={<Professionals />} />}
         {!isLoggedIn && <Route path="/dashboard" element={<Navigate to="/login" />} />}
       </Routes>

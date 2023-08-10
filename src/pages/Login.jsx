@@ -13,15 +13,15 @@ const Login = ({ setIsLoggedIn }) => {
     const userData = existingUsers.find(
       user => user.username === username && user.password === password
     );
-  
+      console.log(userData)
     if (userData) {
         localStorage.setItem('isLoggedIn', 'true');
         setIsLoggedIn(true);
   
         /* if (userData.userType === 'profesional') {
-          navigate('/professionals'); // Redirige a la ruta de profesionales
+          navigate('/professionals'); 
         } else { */
-          navigate('/dashboard'); // Redirige al dashboard
+          navigate('/dashboard'); 
         
       } else {
         alert('Credenciales inválidas. Por favor, verifica tus datos.');

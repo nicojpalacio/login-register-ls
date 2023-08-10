@@ -1,20 +1,28 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
 
-const Dashboard = () => {
-  const navigate = useNavigate();
+import { Link } from 'react-router-dom';
 
-  const handleLogout = () => {
-    localStorage.setItem('isLoggedIn', 'false'); // Cambia la marca de inicio de sesión
-    navigate('/login'); // Redirige a la página de inicio de sesión
-  };
-
+const Dashboard = (props) => {
+  
+  
   return (
     <div>
-      <h2>Panel de control</h2>
-      <button onClick={handleLogout}>Cerrar sesión</button>
+      <h2>Dashboard</h2>
+      {props.userData ? (
+        <div>
+          <h3>Tus datos:</h3>
+          <p>DNI: {props.storedUserData.dni}</p>
+          <p>Número de teléfono: {props.storedUserData.phoneNumber}</p>
+          <p>Tipo de usuario: {props.storedUserData.userType}</p>
+        </div>
+      ) : (
+        <p>No se encontraron datos de usuario.</p>
+      )}
+      <button>
+        <Link to="/login">Cerrar sesión</Link>
+      </button>
     </div>
   );
 };
 
 export default Dashboard;
+

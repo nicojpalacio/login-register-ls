@@ -20,7 +20,7 @@ const Register = () => {
       username
     };
   
-    // Obtener los datos existentes del local storage o inicializar un array vacío
+    
     const existingUsers = JSON.parse(localStorage.getItem('userAccounts')) || [];
     
     

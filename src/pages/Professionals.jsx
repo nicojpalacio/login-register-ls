@@ -1,4 +1,4 @@
-// Professionals.js
+
 import React from 'react';
 
 const Professionals = () => {
