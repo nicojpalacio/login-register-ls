@@ -1,6 +1,6 @@
-
+// App.js
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import Header from './components/Header';
 import Home from './pages/Home';
 import Login from './pages/Login';
@@ -24,9 +24,8 @@ const App = () => {
         <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
         <Route path="/register" element={<Register />} />
         {isLoggedIn && <Route path="/dashboard" element={<Dashboard />} />}
-        {isProfessional && (
-          <Route path="/professionals" element={<Professionals />} /> // Ruta privada para profesionales
-        )}     
+        {isProfessional && <Route path="/professionals" element={<Professionals />} />}
+        {!isLoggedIn && <Route path="/dashboard" element={<Navigate to="/login" />} />}
       </Routes>
     </Router>
   );

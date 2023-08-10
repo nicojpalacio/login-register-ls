@@ -11,19 +11,25 @@ const Register = () => {
   const navigate = useNavigate(); 
   
   const handleRegister = () => {
-    const userData = {
+    const newUserData = {
       dni,
       phoneNumber,
       password,
       userType,
       username
     };
+  
+    // Obtener los datos existentes del local storage o inicializar un array vacío
+    const existingUsers = JSON.parse(localStorage.getItem('userAccounts')) || [];
     
-    localStorage.setItem("userData", JSON.stringify(userData));
+    
+    existingUsers.push(newUserData);
+    
+    
+    localStorage.setItem('userAccounts', JSON.stringify(existingUsers));
+  
     alert('¡Registro exitoso! Ahora puedes iniciar sesión.');
-    // Para utilizar los datos guardados en local storage
-    /* const userData = JSON.parse(localStorage.getItem('userData'));*/
-        navigate('/login');
+    navigate('/login');
   };
 
   return (

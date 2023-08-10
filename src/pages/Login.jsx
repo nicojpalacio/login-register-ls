@@ -8,16 +8,26 @@ const Login = ({ setIsLoggedIn }) => {
   const navigate = useNavigate();
 
   const handleLogin = () => {
-    const userData = JSON.parse(localStorage.getItem('userData'));
-
-    if (userData && userData.username === username && userData.password === password) {
-      localStorage.setItem('isLoggedIn', 'true'); // Cambia la marca de inicio de sesión
-      setIsLoggedIn(true);
-      navigate('/dashboard');
-    } else {
-      alert('Credenciales inválidas. Por favor, verifica tus datos.');
-    }
-  };
+    const existingUsers = JSON.parse(localStorage.getItem('userAccounts')) || [];
+    
+    const userData = existingUsers.find(
+      user => user.username === username && user.password === password
+    );
+  
+    if (userData) {
+        localStorage.setItem('isLoggedIn', 'true');
+        setIsLoggedIn(true);
+  
+        if (userData.userType === 'profesional') {
+          navigate('/professionals'); // Redirige a la ruta de profesionales
+        } else {
+          navigate('/dashboard'); // Redirige al dashboard
+        }
+      } else {
+        alert('Credenciales inválidas. Por favor, verifica tus datos.');
+      }
+    };
+  
 
   return (
     <div>
