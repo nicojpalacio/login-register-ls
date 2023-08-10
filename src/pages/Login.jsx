@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-
+import './Login.css'
 const Login = ({ setIsLoggedIn }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -18,11 +18,11 @@ const Login = ({ setIsLoggedIn }) => {
         localStorage.setItem('isLoggedIn', 'true');
         setIsLoggedIn(true);
   
-        if (userData.userType === 'profesional') {
+        /* if (userData.userType === 'profesional') {
           navigate('/professionals'); // Redirige a la ruta de profesionales
-        } else {
+        } else { */
           navigate('/dashboard'); // Redirige al dashboard
-        }
+        
       } else {
         alert('Credenciales inválidas. Por favor, verifica tus datos.');
       }
@@ -30,24 +30,26 @@ const Login = ({ setIsLoggedIn }) => {
   
 
   return (
-    <div>
-      <h2>Iniciar sesión</h2>
-      <input
-        type="text"
-        placeholder="Usuario"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-      />
-      <input
-        type="password"
-        placeholder="Contraseña"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <button onClick={handleLogin}>Iniciar sesión</button>
-      <p>¿No tienes una cuenta? <Link to="/register">Crear una cuenta</Link></p>
-    </div>
-  );
+    <div className="login-container">
+    <h2>Iniciar sesión</h2>
+    <input
+      type="text"
+      className="login-input"
+      placeholder="Usuario"
+      value={username}
+      onChange={e => setUsername(e.target.value)}
+    />
+    <input
+      type="password"
+      className="login-input"
+      placeholder="Contraseña"
+      value={password}
+      onChange={e => setPassword(e.target.value)}
+    />
+    <button className="login-button" onClick={handleLogin}>Iniciar sesión</button>
+    <p>No tienes una cuenta? <Link to="/register" className="login-link">Crear una cuenta</Link></p>
+  </div>
+);
 };
 
 export default Login;

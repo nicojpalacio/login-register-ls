@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate  } from "react-router-dom";
+import './Register.css';
 
 
 const Register = () => {
@@ -33,39 +34,43 @@ const Register = () => {
   };
 
   return (
-    <div>
+    <div className="register-container">
       <h2>Crear cuenta</h2>
       <input
         type="text"
+        className="register-input"
         placeholder="Nombre de usuario"
         value={username}
         onChange={(e) => setUsername(e.target.value)}
       />
       <input
         type="text"
+        className="register-input"
         placeholder="DNI"
         value={dni}
         onChange={(e) => setDni(e.target.value)}
       />
       <input
         type="text"
+        className="register-input"
         placeholder="Número telefónico"
         value={phoneNumber}
         onChange={(e) => setPhoneNumber(e.target.value)}
       />
       <input
         type="password"
+        className="register-input"
         placeholder="Contraseña"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
-      <select value={userType} onChange={(e) => setUserType(e.target.value)}>
+      <select className="register-select" value={userType} onChange={(e) => setUserType(e.target.value)}>
         <option value="paciente">Paciente</option>
         <option value="profesional">Profesional</option>
       </select>
-      <button onClick={handleRegister}>Crear cuenta</button>
+      <button className="register-button" onClick={handleRegister}>Crear cuenta</button>
       <p>
-        ¿Ya tienes una cuenta? <Link to="/login">Iniciar sesión</Link>
+        ¿Ya tienes una cuenta? <Link to="/login" className="register-link">Iniciar sesión</Link>
       </p>
     </div>
   );
