@@ -1,18 +1,18 @@
 
 import { Link } from 'react-router-dom';
-
+import { useUserContext } from '../utils/UserContext';
 const Dashboard = (props) => {
-  
-  
+  const { userData, setUserData } = useUserContext();
+  console.log(userData)
   return (
     <div>
       <h2>Dashboard</h2>
-      {props.userData ? (
+      {userData ? (
         <div>
           <h3>Tus datos:</h3>
-          <p>DNI: {props.storedUserData.dni}</p>
-          <p>Número de teléfono: {props.storedUserData.phoneNumber}</p>
-          <p>Tipo de usuario: {props.storedUserData.userType}</p>
+          <p>DNI: {userData.dni}</p>
+          <p>Número de teléfono: {userData.phoneNumber}</p>
+          <p>Tipo de usuario: {userData.userType}</p>
         </div>
       ) : (
         <p>No se encontraron datos de usuario.</p>

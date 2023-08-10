@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './Login.css'
+import { useUserContext } from '../utils/UserContext';
 const Login = ({ setIsLoggedIn }) => {
+  const { setUserData } = useUserContext();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -17,7 +19,7 @@ const Login = ({ setIsLoggedIn }) => {
     if (userData) {
         localStorage.setItem('isLoggedIn', 'true');
         setIsLoggedIn(true);
-  
+        setUserData(userData); 
         /* if (userData.userType === 'profesional') {
           navigate('/professionals'); 
         } else { */
