@@ -8,26 +8,19 @@ import Dashboard from './pages/Dashboard';
 import Register from './pages/Register';
 import Professionals from './pages/Professionals';
 import './App.css';
-
+import { useUserContext } from './utils/UserContext';
 const App = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(
-    localStorage.getItem('isLoggedIn') === 'true'
-  );
-
-  const storedUserData = localStorage.getItem('userData');
-  const userData = JSON.parse(storedUserData);
-  console.log(storedUserData)
-  const isProfessional = userData && userData.userType === 'profesional';
+  const {userData, isLoggedIn} = useUserContext();
   return (
     <Router>
       
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        {isLoggedIn && <Route path="/dashboard" element={<Dashboard props={storedUserData} />} />}
-        {isProfessional && <Route path="/professionals" element={<Professionals />} />}
+        {userData?.userType === 'paciente' && <Route path="/dashboard" element={<Dashboard />} />}
+        {userData?.userType === 'profesional' && <Route path="/professionals" element={<Professionals />} />}
         {!isLoggedIn && <Route path="/dashboard" element={<Navigate to="/login" />} />}
       </Routes>
     </Router>

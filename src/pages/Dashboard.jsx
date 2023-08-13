@@ -2,8 +2,8 @@
 import { Link } from 'react-router-dom';
 import { useUserContext } from '../utils/UserContext';
 const Dashboard = (props) => {
-  const { userData, setUserData } = useUserContext();
-  console.log(userData)
+  const { userData } = useUserContext();
+  
   return (
     <div>
       <h2>Dashboard</h2>

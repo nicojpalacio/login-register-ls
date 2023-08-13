@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './Login.css'
 import { useUserContext } from '../utils/UserContext';
-const Login = ({ setIsLoggedIn }) => {
-  const { setUserData } = useUserContext();
+const Login = () => {
+  const { setUserData, setIsLoggedin } = useUserContext();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -18,15 +18,15 @@ const Login = ({ setIsLoggedIn }) => {
       console.log(userData)
     if (userData) {
         localStorage.setItem('isLoggedIn', 'true');
-        setIsLoggedIn(true);
+        setIsLoggedin(true);
         setUserData(userData); 
-        /* if (userData.userType === 'profesional') {
+        if (userData.userType === 'profesional') {
           navigate('/professionals'); 
-        } else { */
+        } else {
           navigate('/dashboard'); 
-        
+        } 
       } else {
-        alert('Credenciales inválidas. Por favor, verifica tus datos.');
+        alert('Cuenta inválidas');
       }
     };
   

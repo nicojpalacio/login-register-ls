@@ -7,7 +7,7 @@ const Register = () => {
   const [dni, setDni] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
-  const [userType, setUserType] = useState("paciente"); // Estado para almacenar el tipo de usuario
+  const [userType, setUserType] = useState("paciente");
   const [username, setUsername] = useState('');
   const navigate = useNavigate(); 
   
@@ -29,7 +29,7 @@ const Register = () => {
     
     localStorage.setItem('userAccounts', JSON.stringify(existingUsers));
   
-    alert('¡Registro exitoso! Ahora puedes iniciar sesión.');
+    alert('Registro exitoso!');
     navigate('/login');
   };
 
